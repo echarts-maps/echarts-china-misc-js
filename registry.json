@@ -1,0 +1,16 @@
+{
+    "JUPYTER_URL": "/nbextensions/echarts-china-misc-js",
+    "GITHUB_URL": "https://echarts-china-misc-js.github.io/echarts-china-misc-js/echarts-china-misc-js",
+    "JUPYTER_ENTRY": "echarts-china-misc-js/index",
+    "JS_FOLDER": "echarts-china-misc-js",
+    "PINYIN_MAP": {
+        "苏皖浙": "su_wan_zhe",
+        "华南": "hua_nan",
+        "华北": "hua_bei"
+    },
+    "FILE_MAP": {
+        "su_wan_zhe": "su_wan_zhe",
+        "hua_nan": "hua_nan",
+        "hua_bei": "hua_bei"
+    }
+}

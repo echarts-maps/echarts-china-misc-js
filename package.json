@@ -1,0 +1,19 @@
+{
+  "name": "echarts-china-misc-js",
+  "version": "1.0.0",
+  "description": "Package maps of custom regions in China",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "C.W.",
+  "license": "MIT",
+  "devDependencies": {
+    "echarts-china-cities-js": "^0.1.1",
+    "echarts-china-provinces-js": "^1.0.0",
+    "echarts-mapmaker": "^1.0.11",
+    "gulp": "^3.9.1",
+    "mapshaper": "^0.4.62",
+    "require-dir": "^1.0.0",
+    "requirejs": "^2.3.5"
+  }
+}
