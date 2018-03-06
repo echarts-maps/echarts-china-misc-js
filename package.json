@@ -13,6 +13,8 @@
     "echarts-mapmaker": "^1.0.11",
     "gulp": "^3.9.1",
     "mapshaper": "^0.4.62",
+    "pinyin": "^2.8.3",
+    "pug": "^2.0.0",
     "require-dir": "^1.0.0",
     "requirejs": "^2.3.5"
   }

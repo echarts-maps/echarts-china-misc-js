@@ -5,6 +5,7 @@ var gulp = require('gulp');
 require('require-dir')('build/tasks');
 
 const TASKS = [
+  'split_geojson',
   '苏皖浙',
   '华南'
 ];

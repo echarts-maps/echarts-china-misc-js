@@ -1,6 +1,20 @@
 var mapshaper = require('mapshaper');
 var fs = require('fs');
 var maker = require("echarts-mapmaker/src/maker")
+const pinyin = require("pinyin");
+const path = require("path");
+const constants = require("./constants");
+
+function merge_geojson(files){
+  for(i = 0; i< (files.length-1); i++){
+    if (i==0){
+      maker.merge(files[i+1] + '.geojson', files[i] + '.geojson');
+    }else{
+      maker.merge('merged_' + files[i] + '.geojson', files[i+1] + '.geojson');
+    }
+  }
+  return 'merged_' + files[files.length-1] + '.geojson';
+}
 
 
 function disolve_internal_borders(js_file, output_file, map_name){
@@ -46,8 +60,25 @@ function transform(geojson, geojson4echarts, mapName){
 
     fs.writeFileSync(geojson4echarts, JSON.stringify(echartsJson));
   })
-}         
+}
+
+function getPinyin(Chinese_words){
+    const py = pinyin(Chinese_words, {
+	    style: pinyin.STYLE_TONE2
+	});
+    return py.join('_');
+}
+
+
+function make_merged_js(files, mapName){
+  var targetFile = getPinyin(mapName) + 'js';
+  var merged = merge_geojson(files);
+  maker.makeJs(merged, path.join(constants.dist, targetFile), mapName);
+}
+
 
 module.exports = {
-  disolve_internal_borders: disolve_internal_borders
+  disolve_internal_borders: disolve_internal_borders,
+  merge_geojson: merge_geojson,
+  make_region_js: make_merged_js
 }
