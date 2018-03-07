@@ -1,3 +1,6 @@
+const gulp = require('gulp');
+const minify = require('gulp-minify');
+const rename = require('gulp-rename');
 var mapshaper = require('mapshaper');
 var fs = require('fs');
 var maker = require("echarts-mapmaker/src/maker")
@@ -10,7 +13,7 @@ function merge_geojson(files){
     if (i==0){
       maker.merge(files[i+1] + '.geojson', files[i] + '.geojson');
     }else{
-      maker.merge('merged_' + files[i] + '.geojson', files[i+1] + '.geojson');
+      maker.merge(files[i+1] + '.geojson', 'merged_' + files[i] + '.geojson');
     }
   }
   return 'merged_' + files[files.length-1] + '.geojson';
@@ -19,18 +22,21 @@ function merge_geojson(files){
 
 function disolve_internal_borders(js_file, output_file, map_name){
   return new Promise((resolve, reject)=>{
-    maker.decompress(js_file, '1.geojson');
-    disolve('1.geojson -dissolve -o 2.geojson').then(()=>{
+    var geojson_file = '1.geojson';
+    maker.decompress(js_file, geojson_file);
+    console.log(js_file);
+    disolve(geojson_file +' -dissolve2 -o 2.geojson').then(()=>{
       transform('2.geojson', output_file, map_name);
       resolve()
-    });
+    }, (error)=>{console.log(error)});
   });
 }
 
 function disolve(command){
   return new Promise((resolve, reject) => {
-    mapshaper.runCommands('1.geojson -dissolve -o 2.geojson', (error) => {
-      resolve()
+    mapshaper.runCommands(command, (error) => {
+      if(error){reject(error);};
+      resolve();
     });
   });
 }
@@ -71,9 +77,18 @@ function getPinyin(Chinese_words){
 
 
 function make_merged_js(files, mapName){
-  var targetFile = getPinyin(mapName) + 'js';
+  var targetFile = getPinyin(mapName) + '.js';
   var merged = merge_geojson(files);
-  maker.makeJs(merged, path.join(constants.dist, targetFile), mapName);
+  maker.makeJs(merged, targetFile, mapName);
+  console.log('----');
+  gulp.src(['./' + targetFile])
+    .pipe(rename({dirname: ''}))  
+    .pipe(minify({
+      noSource:true,
+      ext: {min: ".js"}
+    }))
+    .pipe(gulp.dest(constants.dist));
+  console.log('----');  
 }
 
 

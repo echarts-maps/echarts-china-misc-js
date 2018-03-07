@@ -5,12 +5,26 @@
     "JS_FOLDER": "echarts-china-misc-js",
     "PINYIN_MAP": {
         "苏皖浙": "su_wan_zhe",
-        "华南": "hua_nan",
-        "华北": "hua_bei"
+        "华南": "hua2_nan2",
+        "华北": "hua2_bei3",
+        "华中": "hua2_zhong1",
+        "华东": "hua2_dong1",
+        "西北": "xi1_bei3",
+        "西南": "xi1_nan2",
+        "台港澳": "tai2_gang3_ao4",
+        "东北": "dong1_bei3",
+        "中国区块": "china-regions"
     },
     "FILE_MAP": {
         "su_wan_zhe": "su_wan_zhe",
-        "hua_nan": "hua_nan",
-        "hua_bei": "hua_bei"
+        "hua2_nan2": "hua2_nan2",
+        "hua2_bei3": "hua2_bei3",
+        "hua2_zhong1": "hua2_zhong1",
+        "hua2_dong1": "hua2_dong1",
+        "xi1_bei3": "xi1_bei3",
+        "xi1_nan2": "xi1_nan2",
+        "tai_gang_ao": "tai2_gang3_ao4",
+        "dong1_bei3": "dong1_bei3",
+        "china-regions": "china-regions"
     }
 }

@@ -19,8 +19,23 @@ gulp.task('中华地区', function(){
 gulp.task('中国区块', ()=>{
   utils.disolve_internal_borders(path.join(constants.dist, 'hua2_bei3.js'), 'hua_bei.geojson', '华北').then(()=>{
     utils.disolve_internal_borders(path.join(constants.dist, 'hua2_nan2.js'), 'hua_nan.geojson', '华南').then(()=>{
-      maker.merge('hua_bei.geojson', 'hua_nan.geojson');
-      maker.makeJs('merged_hua_bei.geojson', path.join(constants.dist, 'china-regions.js'), '中国区块');
+      utils.disolve_internal_borders(path.join(constants.dist, 'hua2_zhong1.js'), 'hua_zhong.geojson', '华中').then(()=>{
+        utils.disolve_internal_borders(path.join(constants.dist, 'hua2_dong1.js'), 'hua_dong.geojson', '华东').then(()=>{
+          utils.disolve_internal_borders(path.join(constants.dist, 'xi1_bei3.js'), 'xi_bei.geojson', '西北').then(()=>{
+            utils.disolve_internal_borders(path.join(constants.dist, 'xi1_nan2.js'), 'xi_nan.geojson', '西南').then(()=>{
+              utils.disolve_internal_borders(path.join(constants.dist, 'dong1_bei3.js'), 'dong_bei.geojson', '东北').then(()=>{
+                maker.merge('hua_bei.geojson', 'hua_nan.geojson');
+                maker.merge('hua_zhong.geojson', 'merged_hua_bei.geojson');
+                maker.merge('hua_dong.geojson', 'merged_hua_zhong.geojson');
+                maker.merge('xi_bei.geojson', 'merged_hua_dong.geojson');
+                maker.merge('xi_nan.geojson', 'merged_xi_bei.geojson');
+                maker.merge('dong_bei.geojson', 'merged_xi_nan.geojson');
+                maker.makeJs('merged_dong_bei.geojson', path.join(constants.dist, 'china-regions.js'), '中国区块');
+              });
+            });
+          });
+        });
+      });
     });
   });
 })
