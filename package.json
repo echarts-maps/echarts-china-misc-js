@@ -1,6 +1,6 @@
 {
   "name": "echarts-china-misc-js",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Package maps of custom regions in China",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
