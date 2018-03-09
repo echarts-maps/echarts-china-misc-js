@@ -6,6 +6,7 @@
     "PINYIN_MAP": {
         "苏皖浙": "su_wan_zhe",
         "华南": "hua2_nan2",
+        "华南2": "hua2_nan2_2",
         "华北": "hua2_bei3",
         "华中": "hua2_zhong1",
         "华东": "hua2_dong1",
@@ -13,11 +14,12 @@
         "西南": "xi1_nan2",
         "台港澳": "tai2_gang3_ao4",
         "东北": "dong1_bei3",
-        "中国区块": "china-regions"
+        "中国七大区": "china-regions"
     },
     "FILE_MAP": {
         "su_wan_zhe": "su_wan_zhe",
         "hua2_nan2": "hua2_nan2",
+        "hua2_nan2_2": "hua2_nan2_2",
         "hua2_bei3": "hua2_bei3",
         "hua2_zhong1": "hua2_zhong1",
         "hua2_dong1": "hua2_dong1",

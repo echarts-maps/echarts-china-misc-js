@@ -11,12 +11,21 @@ const constants = require("./constants");
 function merge_geojson(files){
   for(i = 0; i< (files.length-1); i++){
     if (i==0){
-      maker.merge(files[i+1] + '.geojson', files[i] + '.geojson');
+      maker.merge(addGeojsonSuffix(files[i+1]), addGeojsonSuffix(files[i]));
     }else{
-      maker.merge(files[i+1] + '.geojson', 'merged_' + files[i] + '.geojson');
+      maker.merge(addGeojsonSuffix(files[i+1]), 'merged_' + addGeojsonSuffix(files[i]));
+      fs.unlinkSync('merged_' + addGeojsonSuffix(files[i]));
     }
   }
-  return 'merged_' + files[files.length-1] + '.geojson';
+  return 'merged_' + addGeojsonSuffix(files[files.length-1]);
+}
+
+function addGeojsonSuffix(afile){
+  if(afile.indexOf('.geojson')=== -1){
+    return afile + '.geojson';
+  }else{
+    return afile;
+  }
 }
 
 
@@ -80,7 +89,22 @@ function make_merged_js(files, mapName){
   var targetFile = getPinyin(mapName) + '.js';
   var merged = merge_geojson(files);
   maker.makeJs(merged, targetFile, mapName);
-  console.log('----');
+  fs.unlinkSync(merged);
+  return gulp.src(['./' + targetFile])
+    .pipe(rename({dirname: ''}))  
+    .pipe(minify({
+      noSource:true,
+      ext: {min: ".js"}
+    }))
+    .pipe(gulp.dest(constants.dist));
+}
+
+function make_merged_js_2nd(files, mapName){
+  var targetFile = getPinyin(mapName) + '.js';
+  var merged = merge_geojson(files);
+  maker.cutByFile('china-contour.json', merged);
+  maker.merge(merged, 'cut_china-contour.json');
+  maker.makeJs('merged_' + merged, targetFile, mapName);
   gulp.src(['./' + targetFile])
     .pipe(rename({dirname: ''}))  
     .pipe(minify({
@@ -88,12 +112,13 @@ function make_merged_js(files, mapName){
       ext: {min: ".js"}
     }))
     .pipe(gulp.dest(constants.dist));
-  console.log('----');  
+  return 'merged_' + merged;
 }
 
 
 module.exports = {
   disolve_internal_borders: disolve_internal_borders,
   merge_geojson: merge_geojson,
-  make_region_js: make_merged_js
+  make_region_js: make_merged_js,
+  make_region_js_2nd: make_merged_js_2nd
 }
