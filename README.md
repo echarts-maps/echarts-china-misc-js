@@ -1,8 +1,10 @@
-# 简介 - Introduction
+# echarts-china-misc-js
+
+## 简介 - Introduction
 
 中国的各种区域图。
 
-Custom boundaries of regions in China. 
+Custom boundaries of regions in China.
 
 # 地图 - Map
 
@@ -14,18 +16,23 @@ Custom boundaries of regions in China.
 | 华北               | 内蒙古、河北、山西、北京，天津 |
 | 华中               | 河南、湖北、湖南             |
 | 西北               | 宁夏、'新疆、青海、陕西、甘肃 |
-| 西南 |   四川、云南、贵州、西藏、重庆|
-| 东北 |   辽宁、吉林、黑龙江 |
-| 华东 |  上海、江苏、浙江、安徽、福建、山东、台湾、江西|
-| 台港澳 | 台湾、香港、澳门 |
+| 西南               |   四川、云南、贵州、西藏、重庆|
+| 东北               |    辽宁、吉林、黑龙江 |
+| 华东               |  上海、江苏、浙江、安徽、福建、山东、台湾、江西|
+| 台港澳             | 台湾、香港、澳门 |
 
+## 安装 - Installation
 
-# 版权 license
+```
+npm install echarts-china-misc-js
+```
+
+## 版权 license
 
 目前地图来自百度。版权是 MIT。
 
 
-# Build instructions for myself
+## Build instructions for myself
 
 ```
 gulp manual-hainan
