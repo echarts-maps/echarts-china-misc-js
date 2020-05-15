@@ -31,6 +31,8 @@ npm install echarts-china-misc-js
 
 目前地图来自百度。版权是 MIT。
 
+This projects is NOT associated with official Apache ECharts (incubating) project and is independently maintained by [@chfw](https://github.com/chfw).
+
 
 ## Build instructions for myself
 
