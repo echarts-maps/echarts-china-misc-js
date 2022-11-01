@@ -11,7 +11,7 @@
     "echarts-china-cities-js": "^0.1.1",
     "echarts-china-provinces-js": "^1.0.0",
     "echarts-mapmaker": "^1.0.11",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-minify": "^2.1.0",
     "gulp-rename": "^1.2.2",
     "mapshaper": "^0.4.62",
